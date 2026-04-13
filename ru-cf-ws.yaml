@@ -1,0 +1,49 @@
+mixed-port: 7890
+allow-lan: false
+mode: rule
+log-level: info
+ipv6: false
+unified-delay: true
+tcp-concurrent: true
+
+profile:
+  store-selected: true
+
+dns:
+  enable: true
+  ipv6: false
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  default-nameserver:
+    - 1.1.1.1
+    - 8.8.8.8
+  nameserver:
+    - https://1.1.1.1/dns-query
+    - https://dns.google/dns-query
+
+proxies:
+  - name: "RU-CF-WS"
+    type: vless
+    server: ru.moyou0929.me
+    port: 8443
+    uuid: 2edce812-f998-4c25-afa0-37518b476e49
+    cipher: none
+    network: ws
+    tls: true
+    udp: true
+    servername: ru.moyou0929.me
+    ws-opts:
+      path: /moyouws
+      headers:
+        Host: ru.moyou0929.me
+
+proxy-groups:
+  - name: "🚀 Proxy"
+    type: select
+    proxies:
+      - "RU-CF-WS"
+      - "DIRECT"
+
+rules:
+  - GEOIP,CN,DIRECT
+  - MATCH,🚀 Proxy
