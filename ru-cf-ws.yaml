@@ -15,13 +15,60 @@ dns:
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   default-nameserver:
-    - 1.1.1.1
-    - 8.8.8.8
+    - 77.88.8.8
+    - 77.88.8.1
+    - 223.5.5.5
   nameserver:
-    - https://1.1.1.1/dns-query
-    - https://dns.google/dns-query
+    - 77.88.8.8
+    - 77.88.8.1
+    - 223.5.5.5
+    - 8.8.8.8
 
 proxies:
+  - name: "RU-REALITY-IP"
+    type: vless
+    server: 146.190.45.41
+    port: 443
+    uuid: 2edce812-f998-4c25-afa0-37518b476e49
+    udp: true
+    tls: true
+    flow: xtls-rprx-vision
+    servername: www.cloudflare.com
+    network: tcp
+    reality-opts:
+      public-key: "KkbTo4H-bxPJl9kf9gjfTb_e6LJGyXWm47gqeXhmZSg"
+      short-id: 9f543bc184ab619c
+    client-fingerprint: chrome
+
+  - name: "RU-REALITY-DOMAIN"
+    type: vless
+    server: x.moyou0929.me
+    port: 443
+    uuid: 2edce812-f998-4c25-afa0-37518b476e49
+    udp: true
+    tls: true
+    flow: xtls-rprx-vision
+    servername: www.cloudflare.com
+    network: tcp
+    reality-opts:
+      public-key: "KkbTo4H-bxPJl9kf9gjfTb_e6LJGyXWm47gqeXhmZSg"
+      short-id: 9f543bc184ab619c
+    client-fingerprint: chrome
+
+  - name: "RU-HY2-IP"
+    type: hysteria2
+    server: 146.190.45.41
+    port: 40000
+    password: 508mdUsxh6ZYJarMzR+dP8JphA/CRizV
+    sni: hy2.moyou0929.me
+
+  - name: "RU-HY2-DOMAIN"
+    type: hysteria2
+    server: hy2.moyou0929.me
+    port: 40000
+    password: 508mdUsxh6ZYJarMzR+dP8JphA/CRizV
+    sni: hy2.moyou0929.me
+
   - name: "RU-CF-WS"
     type: vless
     server: ru.moyou0929.me
@@ -38,12 +85,15 @@ proxies:
         Host: ru.moyou0929.me
 
 proxy-groups:
-  - name: "🚀 Proxy"
+  - name: "RU-MANUAL"
     type: select
     proxies:
+      - "RU-REALITY-IP"
+      - "RU-REALITY-DOMAIN"
+      - "RU-HY2-IP"
+      - "RU-HY2-DOMAIN"
       - "RU-CF-WS"
       - "DIRECT"
 
 rules:
-  - GEOIP,CN,DIRECT
-  - MATCH,🚀 Proxy
+  - MATCH,RU-MANUAL
