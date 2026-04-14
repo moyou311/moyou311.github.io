@@ -44,7 +44,7 @@ proxies:
     type: hysteria2
     server: hy2.moyou0929.me
     port: 40000
-    password: 508mdUsxh6ZYJarMzR+dP8JphA/CRizV
+    password: 508mdUsxh6ZYJarMzR+dP8Jpha/CRizV
     sni: hy2.moyou0929.me
 
   - name: "RU-CF-WS"
