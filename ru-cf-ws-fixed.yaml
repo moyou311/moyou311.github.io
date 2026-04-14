@@ -52,5 +52,4 @@ proxy-groups:
       - "DIRECT"
 
 rules:
-  - GEOIP,CN,DIRECT
   - MATCH,RU-Proxy
