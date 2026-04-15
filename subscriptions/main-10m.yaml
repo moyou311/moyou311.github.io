@@ -25,9 +25,7 @@ dns:
     - 77.88.8.8
 
 proxies:
-  # FRA1 主节点。
-  # 如果两台服务器共用一个客户端身份，可以复用同一个 UUID；
-  # 否则分别填写各自的 UUID / public-key / short-id。
+  # FRA1 主节点：REALITY。
   - name: "DE-REALITY"
     type: vless
     server: de-xr.moyou0929.me
@@ -43,11 +41,26 @@ proxies:
       short-id: "2ed5bf2b48357ec7"
     client-fingerprint: chrome
 
+  # FRA1 备用：gRPC + TLS。
+  - name: "DE-GRPC"
+    type: vless
+    server: de-xr.moyou0929.me
+    port: 8443
+    uuid: "83095547-86a0-4acf-b655-a2cb3ed5e794"
+    udp: true
+    tls: true
+    servername: de-xr.moyou0929.me
+    network: grpc
+    grpc-opts:
+      grpc-service-name: grpc
+    client-fingerprint: chrome
+
 proxy-groups:
   - name: "MAIN"
     type: select
     proxies:
       - "DE-REALITY"
+      - "DE-GRPC"
       - "DIRECT"
 
 rules:
