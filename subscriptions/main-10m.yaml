@@ -1,0 +1,71 @@
+mixed-port: 7890
+allow-lan: false
+mode: rule
+log-level: info
+ipv6: false
+unified-delay: true
+tcp-concurrent: true
+
+profile:
+  store-selected: true
+
+dns:
+  enable: true
+  ipv6: false
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  default-nameserver:
+    - 1.1.1.1
+    - 8.8.8.8
+    - 223.5.5.5
+  nameserver:
+    - 1.1.1.1
+    - 8.8.8.8
+    - 223.5.5.5
+    - 77.88.8.8
+
+proxies:
+  # FRA1 主节点。
+  # 如果两台服务器共用一个客户端身份，可以复用同一个 UUID；
+  # 否则分别填写各自的 UUID / public-key / short-id。
+  - name: "DE-REALITY"
+    type: vless
+    server: de-xr.moyou0929.me
+    port: 443
+    uuid: "83095547-86a0-4acf-b655-a2cb3ed5e794"
+    udp: true
+    tls: true
+    flow: xtls-rprx-vision
+    servername: www.cloudflare.com
+    network: tcp
+    reality-opts:
+      public-key: "NgAG77pyD-iQIedKEjcTOvD9lEvTrSBeZt4w0Nthhl8"
+      short-id: "2ed5bf2b48357ec7"
+    client-fingerprint: chrome
+
+  # SGP1 主节点。
+  - name: "SG-REALITY"
+    type: vless
+    server: sg-xr.moyou0929.me
+    port: 443
+    uuid: "REPLACE_WITH_SG_UUID"
+    udp: true
+    tls: true
+    flow: xtls-rprx-vision
+    servername: www.cloudflare.com
+    network: tcp
+    reality-opts:
+      public-key: "REPLACE_WITH_SG_PUBLIC_KEY"
+      short-id: "REPLACE_WITH_SG_SHORT_ID"
+    client-fingerprint: chrome
+
+proxy-groups:
+  - name: "MAIN"
+    type: select
+    proxies:
+      - "DE-REALITY"
+      - "SG-REALITY"
+      - "DIRECT"
+
+rules:
+  - MATCH,MAIN
