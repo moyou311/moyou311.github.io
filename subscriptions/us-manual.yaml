@@ -1,0 +1,401 @@
+mixed-port: 7890
+allow-lan: false
+mode: rule
+log-level: info
+ipv6: false
+unified-delay: true
+tcp-concurrent: true
+
+profile:
+  store-selected: true
+
+dns:
+  enable: true
+  ipv6: false
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  default-nameserver:
+    - 1.1.1.1
+    - 8.8.8.8
+    - 223.5.5.5
+  nameserver:
+    - 1.1.1.1
+    - 8.8.8.8
+    - 223.5.5.5
+    - 77.88.8.8
+
+proxies:
+  - name: "🇺🇸 UnitedStates-NewYork_DX292Mbps"
+    type: vless
+    server: s412.okgfw.top
+    port: 443
+    uuid: 1fbf515a-0d96-34b7-8005-59f317782705
+    udp: true
+    tls: true
+    tfo: false
+    skip-cert-verify: false
+    servername: u510619u95e5s412.okgfw.top
+    client-fingerprint: ios
+    network: grpc
+    grpc-opts:
+      grpc-service-name: ssp
+
+  - name: "🇺🇸 UnitedStates-Illinois+_Gemini✅"
+    type: vless
+    server: s355.ccgfw.online
+    port: 443
+    uuid: 1fbf515a-0d96-34b7-8005-59f317782705
+    udp: true
+    tls: true
+    tfo: false
+    flow: xtls-rprx-vision
+    skip-cert-verify: false
+    servername: u510619u1b9es355.ccgfw.online
+    client-fingerprint: random
+    network: tcp
+
+  - name: "🇺🇸 UnitedStates-NewYork_DX395Mbps"
+    type: vless
+    server: s688.okgfw.top
+    port: 443
+    uuid: 1fbf515a-0d96-34b7-8005-59f317782705
+    udp: true
+    tls: true
+    tfo: false
+    flow: xtls-rprx-vision
+    skip-cert-verify: false
+    servername: u510619ud6c8s688.okgfw.top
+    client-fingerprint: random
+    network: tcp
+
+  - name: "🇺🇸 [IPv6] 🇺🇸UnitedStates-Delaware+_Gemini✅"
+    type: vless
+    server: ipv6s360.ccgfw.online
+    port: 443
+    uuid: 1fbf515a-0d96-34b7-8005-59f317782705
+    udp: true
+    tls: true
+    tfo: false
+    flow: xtls-rprx-vision
+    skip-cert-verify: false
+    servername: u510619ub6c1ipv6s360.ccgfw.online
+    client-fingerprint: random
+    network: tcp
+
+  - name: "🇺🇸 UnitedStates-Illinois_DX267Mbps"
+    type: vless
+    server: s539.ccgfw.top
+    port: 443
+    uuid: 1fbf515a-0d96-34b7-8005-59f317782705
+    udp: true
+    tls: true
+    tfo: false
+    skip-cert-verify: false
+    servername: u510619u9545s539.ccgfw.top
+    client-fingerprint: ios
+    network: grpc
+    grpc-opts:
+      grpc-service-name: ssp
+
+  - name: "🇺🇸 UnitedStates-NewYork"
+    type: vless
+    server: s733.okgfw.top
+    port: 443
+    uuid: 1fbf515a-0d96-34b7-8005-59f317782705
+    udp: true
+    tls: true
+    tfo: false
+    flow: xtls-rprx-vision
+    skip-cert-verify: false
+    servername: u510619ubee1s733.okgfw.top
+    client-fingerprint: random
+    network: tcp
+
+  - name: "🇺🇸 UnitedStates-NewYork 2"
+    type: vless
+    server: s442.okgfw.top
+    port: 443
+    uuid: 1fbf515a-0d96-34b7-8005-59f317782705
+    udp: true
+    tls: true
+    tfo: false
+    skip-cert-verify: false
+    servername: u510619uc9f2s442.okgfw.top
+    client-fingerprint: ios
+    network: grpc
+    grpc-opts:
+      grpc-service-name: ssp
+
+  - name: "🇺🇸 UnitedStates-California_DX192Mbps"
+    type: vless
+    server: s703.okgfw.top
+    port: 443
+    uuid: 1fbf515a-0d96-34b7-8005-59f317782705
+    udp: true
+    tls: true
+    tfo: false
+    skip-cert-verify: false
+    servername: u510619u3e29s703.okgfw.top
+    client-fingerprint: ios
+    network: grpc
+    grpc-opts:
+      grpc-service-name: ssp
+
+  - name: "🇺🇸 UnitedStates-Illinois"
+    type: vless
+    server: s541.ccgfw.top
+    port: 443
+    uuid: 1fbf515a-0d96-34b7-8005-59f317782705
+    udp: true
+    tls: true
+    tfo: false
+    skip-cert-verify: false
+    servername: u510619u5679s541.ccgfw.top
+    client-fingerprint: ios
+    network: grpc
+    grpc-opts:
+      grpc-service-name: ssp
+
+  - name: "🇺🇸 UnitedStates-NewYork 3"
+    type: vless
+    server: s411.okgfw.top
+    port: 443
+    uuid: 1fbf515a-0d96-34b7-8005-59f317782705
+    udp: true
+    tls: true
+    tfo: false
+    skip-cert-verify: false
+    servername: u510619u3cfas411.okgfw.top
+    client-fingerprint: ios
+    network: grpc
+    grpc-opts:
+      grpc-service-name: ssp
+
+  - name: "🇺🇸 UnitedStates-Delaware_YD889Mbps+_Gemini✅"
+    type: vless
+    server: s359.ccgfw.online
+    port: 443
+    uuid: 1fbf515a-0d96-34b7-8005-59f317782705
+    udp: true
+    tls: true
+    tfo: false
+    flow: xtls-rprx-vision
+    skip-cert-verify: false
+    servername: u510619ufff4s359.ccgfw.online
+    client-fingerprint: random
+    network: tcp
+
+  - name: "🇺🇸 UnitedStates-Illinois+_Gemini✅ 2"
+    type: vless
+    server: s339.ccgfw.online
+    port: 443
+    uuid: 1fbf515a-0d96-34b7-8005-59f317782705
+    udp: true
+    tls: true
+    tfo: false
+    flow: xtls-rprx-vision
+    skip-cert-verify: false
+    servername: u510619u5328s339.ccgfw.online
+    client-fingerprint: random
+    network: tcp
+
+  - name: "🇺🇸 UnitedStates-Illinois 2"
+    type: vless
+    server: s538.ccgfw.top
+    port: 443
+    uuid: 1fbf515a-0d96-34b7-8005-59f317782705
+    udp: true
+    tls: true
+    tfo: false
+    skip-cert-verify: false
+    servername: u510619u7c0es538.ccgfw.top
+    client-fingerprint: ios
+    network: grpc
+    grpc-opts:
+      grpc-service-name: ssp
+
+  - name: "🇺🇸 UnitedStates-California_YD60Mbps"
+    type: vless
+    server: s848.ccgfw.top
+    port: 443
+    uuid: 1fbf515a-0d96-34b7-8005-59f317782705
+    udp: true
+    tls: true
+    tfo: false
+    skip-cert-verify: false
+    servername: u510619u0801s848.ccgfw.top
+    client-fingerprint: ios
+    network: grpc
+    grpc-opts:
+      grpc-service-name: ssp
+
+  - name: "🇺🇸 UnitedStates-NewYork_YD250Mbps"
+    type: vless
+    server: s686.okgfw.top
+    port: 443
+    uuid: 1fbf515a-0d96-34b7-8005-59f317782705
+    udp: true
+    tls: true
+    tfo: false
+    flow: xtls-rprx-vision
+    skip-cert-verify: false
+    servername: u510619uf559s686.okgfw.top
+    client-fingerprint: random
+    network: tcp
+
+  - name: "🇺🇸 UnitedStates-NewYork_⚠️"
+    type: vless
+    server: s407.okgfw.top
+    port: 443
+    uuid: 1fbf515a-0d96-34b7-8005-59f317782705
+    udp: true
+    tls: true
+    tfo: false
+    skip-cert-verify: false
+    servername: u510619u336ds407.okgfw.top
+    client-fingerprint: ios
+    network: grpc
+    grpc-opts:
+      grpc-service-name: ssp
+
+  - name: "🇺🇸 UnitedStates-California_YD85Mbps"
+    type: vless
+    server: s702.okgfw.top
+    port: 443
+    uuid: 1fbf515a-0d96-34b7-8005-59f317782705
+    udp: true
+    tls: true
+    tfo: false
+    skip-cert-verify: false
+    servername: u510619u6ae4s702.okgfw.top
+    client-fingerprint: ios
+    network: grpc
+    grpc-opts:
+      grpc-service-name: ssp
+
+  - name: "🇺🇸 UnitedStates-Illinois_⚠️+_Gemini✅"
+    type: vless
+    server: s295.ccgfw.online
+    port: 443
+    uuid: 1fbf515a-0d96-34b7-8005-59f317782705
+    udp: true
+    tls: true
+    tfo: false
+    flow: xtls-rprx-vision
+    skip-cert-verify: false
+    servername: u510619ucc13s295.ccgfw.online
+    client-fingerprint: random
+    network: tcp
+
+  - name: "🇺🇸 UnitedStates-Delaware_DX12Mbps+_Gemini✅"
+    type: vless
+    server: s356.ccgfw.online
+    port: 443
+    uuid: 1fbf515a-0d96-34b7-8005-59f317782705
+    udp: true
+    tls: true
+    tfo: false
+    flow: xtls-rprx-vision
+    skip-cert-verify: false
+    servername: u510619ub0cfs356.ccgfw.online
+    client-fingerprint: random
+    network: tcp
+
+  - name: "🇺🇸 [IPv6] 🇺🇸UnitedStates-Delaware+_Gemini✅ 2"
+    type: vless
+    server: ipv6s362.ccgfw.online
+    port: 443
+    uuid: 1fbf515a-0d96-34b7-8005-59f317782705
+    udp: true
+    tls: true
+    tfo: false
+    flow: xtls-rprx-vision
+    skip-cert-verify: false
+    servername: u510619ued5eipv6s362.ccgfw.online
+    client-fingerprint: random
+    network: tcp
+
+  - name: "🇺🇸 美国 01"
+    type: vless
+    server: 162.159.45.202
+    port: 8443
+    uuid: dcda262b-0d36-4032-edd9-da4fd2d53711
+    udp: true
+    tls: true
+    servername: zoro.jakesolo.eu.org
+    network: ws
+    ws-opts:
+      path: /ws
+      headers:
+        Host: zoro.jakesolo.eu.org
+
+  - name: "🇺🇸 美国 02"
+    type: hysteria2
+    server: vpn-us-020.fastervpn.world
+    port: 443
+    password: qQe1z5kU8kN6SlKnDt9Ru3Qp
+    sni: vpn-us-020.fastervpn.world
+    skip-cert-verify: true
+    udp: true
+
+proxy-groups:
+  - name: "PROXY"
+    type: select
+    proxies:
+      - "US-AUTO"
+      - "🇺🇸 UnitedStates-Illinois+_Gemini✅"
+      - "🇺🇸 UnitedStates-Delaware_YD889Mbps+_Gemini✅"
+      - "🇺🇸 UnitedStates-NewYork_DX395Mbps"
+      - "🇺🇸 UnitedStates-NewYork_YD250Mbps"
+      - "🇺🇸 美国 01"
+      - "🇺🇸 美国 02"
+      - "🇺🇸 UnitedStates-NewYork_DX292Mbps"
+      - "🇺🇸 [IPv6] 🇺🇸UnitedStates-Delaware+_Gemini✅"
+      - "🇺🇸 UnitedStates-Illinois_DX267Mbps"
+      - "🇺🇸 UnitedStates-NewYork"
+      - "🇺🇸 UnitedStates-NewYork 2"
+      - "🇺🇸 UnitedStates-California_DX192Mbps"
+      - "🇺🇸 UnitedStates-Illinois"
+      - "🇺🇸 UnitedStates-NewYork 3"
+      - "🇺🇸 UnitedStates-Illinois+_Gemini✅ 2"
+      - "🇺🇸 UnitedStates-Illinois 2"
+      - "🇺🇸 UnitedStates-California_YD60Mbps"
+      - "🇺🇸 UnitedStates-NewYork_⚠️"
+      - "🇺🇸 UnitedStates-California_YD85Mbps"
+      - "🇺🇸 UnitedStates-Illinois_⚠️+_Gemini✅"
+      - "🇺🇸 UnitedStates-Delaware_DX12Mbps+_Gemini✅"
+      - "🇺🇸 [IPv6] 🇺🇸UnitedStates-Delaware+_Gemini✅ 2"
+      - "DIRECT"
+
+  - name: "US-AUTO"
+    type: url-test
+    url: https://cp.cloudflare.com/generate_204
+    interval: 300
+    tolerance: 50
+    proxies:
+      - "🇺🇸 UnitedStates-Illinois+_Gemini✅"
+      - "🇺🇸 UnitedStates-Delaware_YD889Mbps+_Gemini✅"
+      - "🇺🇸 UnitedStates-NewYork_DX395Mbps"
+      - "🇺🇸 UnitedStates-NewYork_YD250Mbps"
+      - "🇺🇸 美国 01"
+      - "🇺🇸 美国 02"
+      - "🇺🇸 UnitedStates-NewYork_DX292Mbps"
+      - "🇺🇸 [IPv6] 🇺🇸UnitedStates-Delaware+_Gemini✅"
+      - "🇺🇸 UnitedStates-Illinois_DX267Mbps"
+      - "🇺🇸 UnitedStates-NewYork"
+      - "🇺🇸 UnitedStates-NewYork 2"
+      - "🇺🇸 UnitedStates-California_DX192Mbps"
+      - "🇺🇸 UnitedStates-Illinois"
+      - "🇺🇸 UnitedStates-NewYork 3"
+      - "🇺🇸 UnitedStates-Illinois+_Gemini✅ 2"
+      - "🇺🇸 UnitedStates-Illinois 2"
+      - "🇺🇸 UnitedStates-California_YD60Mbps"
+      - "🇺🇸 UnitedStates-NewYork_⚠️"
+      - "🇺🇸 UnitedStates-California_YD85Mbps"
+      - "🇺🇸 UnitedStates-Illinois_⚠️+_Gemini✅"
+      - "🇺🇸 UnitedStates-Delaware_DX12Mbps+_Gemini✅"
+      - "🇺🇸 [IPv6] 🇺🇸UnitedStates-Delaware+_Gemini✅ 2"
+
+rules:
+  - GEOIP,CN,DIRECT
+  - MATCH,PROXY
