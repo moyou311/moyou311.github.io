@@ -43,28 +43,11 @@ proxies:
       short-id: "2ed5bf2b48357ec7"
     client-fingerprint: chrome
 
-  # SGP1 主节点。
-  - name: "SG-REALITY"
-    type: vless
-    server: sg-xr.moyou0929.me
-    port: 443
-    uuid: "REPLACE_WITH_SG_UUID"
-    udp: true
-    tls: true
-    flow: xtls-rprx-vision
-    servername: www.cloudflare.com
-    network: tcp
-    reality-opts:
-      public-key: "REPLACE_WITH_SG_PUBLIC_KEY"
-      short-id: "REPLACE_WITH_SG_SHORT_ID"
-    client-fingerprint: chrome
-
 proxy-groups:
   - name: "MAIN"
     type: select
     proxies:
       - "DE-REALITY"
-      - "SG-REALITY"
       - "DIRECT"
 
 rules:
