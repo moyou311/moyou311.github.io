@@ -1,0 +1,86 @@
+mixed-port: 7890
+allow-lan: false
+mode: rule
+log-level: info
+ipv6: false
+unified-delay: true
+tcp-concurrent: true
+
+profile:
+  # 订阅更新后优先回到当前默认顺序，避免客户端长期卡在旧选择上。
+  store-selected: false
+
+dns:
+  enable: true
+  ipv6: false
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  respect-rules: true
+  default-nameserver:
+    - 77.88.8.8
+    - 77.88.8.1
+    - 223.5.5.5
+    - 1.1.1.1
+  nameserver:
+    - 77.88.8.8
+    - 77.88.8.1
+    - 223.5.5.5
+    - 1.1.1.1
+    - 8.8.8.8
+
+proxies:
+  # 正式默认入口：gRPC + TLS，当前对该俄罗斯网络更稳。
+  - name: "DE-GRPC"
+    type: vless
+    server: 159.65.123.94
+    port: 8443
+    uuid: "83095547-86a0-4acf-b655-a2cb3ed5e794"
+    udp: true
+    tls: true
+    servername: de-xr.moyou0929.me
+    network: grpc
+    grpc-opts:
+      grpc-service-name: grpc
+    client-fingerprint: chrome
+
+  # 同协议、不同暴露面：用于区分单 IP 打标与协议整体失效。
+  - name: "DE-GRPC-DOMAIN"
+    type: vless
+    server: de-xr.moyou0929.me
+    port: 8443
+    uuid: "83095547-86a0-4acf-b655-a2cb3ed5e794"
+    udp: true
+    tls: true
+    servername: de-xr.moyou0929.me
+    network: grpc
+    grpc-opts:
+      grpc-service-name: grpc
+    client-fingerprint: chrome
+
+  # 手动排障入口：REALITY 只保留作备选，不做默认自动探测。
+  - name: "DE-REALITY"
+    type: vless
+    server: 159.65.123.94
+    port: 443
+    uuid: "83095547-86a0-4acf-b655-a2cb3ed5e794"
+    udp: true
+    tls: true
+    flow: xtls-rprx-vision
+    servername: www.cloudflare.com
+    network: tcp
+    reality-opts:
+      public-key: "NgAG77pyD-iQIedKEjcTOvD9lEvTrSBeZt4w0Nthhl8"
+      short-id: "2ed5bf2b48357ec7"
+    client-fingerprint: chrome
+
+proxy-groups:
+  - name: "MAIN"
+    type: select
+    proxies:
+      - "DE-GRPC"
+      - "DE-GRPC-DOMAIN"
+      - "DE-REALITY"
+      - "DIRECT"
+
+rules:
+  - MATCH,MAIN
