@@ -7,7 +7,7 @@ unified-delay: true
 tcp-concurrent: true
 
 profile:
-  # 订阅更新后优先回到当前默认顺序，避免客户端长期卡在旧选择上。
+  # 正式订阅每次更新后回到当前默认顺序，避免长期卡在历史测试入口。
   store-selected: false
 
 dns:
@@ -28,57 +28,51 @@ dns:
     - 8.8.8.8
 
 proxies:
-  # 正式默认入口：gRPC + TLS，当前对该俄罗斯网络更稳。
-  - name: "DE-GRPC-IP"
-    type: vless
-    server: 159.65.123.94
-    port: 8443
-    uuid: "83095547-86a0-4acf-b655-a2cb3ed5e794"
-    udp: true
-    tls: true
-    servername: de-xr.moyou0929.me
-    network: grpc
-    grpc-opts:
-      grpc-service-name: grpc
-    client-fingerprint: chrome
-
-  # 同协议、不同暴露面：用于区分单 IP 打标与协议整体失效。
-  - name: "DE-GRPC-DOMAIN"
-    type: vless
-    server: de-xr.moyou0929.me
-    port: 8443
-    uuid: "83095547-86a0-4acf-b655-a2cb3ed5e794"
-    udp: true
-    tls: true
-    servername: de-xr.moyou0929.me
-    network: grpc
-    grpc-opts:
-      grpc-service-name: grpc
-    client-fingerprint: chrome
-
-  # 手动排障入口：REALITY 只保留作备选，不做默认自动探测。
-  - name: "DE-REALITY"
+  # 正式主链路：443/TLS + XHTTP。
+  # 需要客户端使用支持 xhttp 的 Mihomo 版本，先升级客户端再下发正式订阅。
+  - name: "DE-XHTTP-IP"
     type: vless
     server: 159.65.123.94
     port: 443
     uuid: "83095547-86a0-4acf-b655-a2cb3ed5e794"
     udp: true
     tls: true
-    flow: xtls-rprx-vision
-    servername: www.cloudflare.com
-    network: tcp
-    reality-opts:
-      public-key: "NgAG77pyD-iQIedKEjcTOvD9lEvTrSBeZt4w0Nthhl8"
-      short-id: "2ed5bf2b48357ec7"
+    servername: de-xr.moyou0929.me
+    alpn:
+      - h2
+    network: xhttp
     client-fingerprint: chrome
+    encryption: ""
+    xhttp-opts:
+      path: /api/v3/sync
+      host: de-xr.moyou0929.me
+      mode: packet-up
+
+  # 同一条主线保留域名暴露面，用于区分 DNS 问题与单 IP 问题。
+  - name: "DE-XHTTP-DOMAIN"
+    type: vless
+    server: de-xr.moyou0929.me
+    port: 443
+    uuid: "83095547-86a0-4acf-b655-a2cb3ed5e794"
+    udp: true
+    tls: true
+    servername: de-xr.moyou0929.me
+    alpn:
+      - h2
+    network: xhttp
+    client-fingerprint: chrome
+    encryption: ""
+    xhttp-opts:
+      path: /api/v3/sync
+      host: de-xr.moyou0929.me
+      mode: packet-up
 
 proxy-groups:
   - name: "MAIN"
     type: select
     proxies:
-      - "DE-GRPC-IP"
-      - "DE-GRPC-DOMAIN"
-      - "DE-REALITY"
+      - "DE-XHTTP-IP"
+      - "DE-XHTTP-DOMAIN"
       - "DIRECT"
 
 rules:
