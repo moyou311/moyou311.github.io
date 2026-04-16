@@ -2,7 +2,7 @@ mixed-port: 7890
 allow-lan: false
 mode: rule
 log-level: debug
-ipv6: true
+ipv6: false
 unified-delay: true
 tcp-concurrent: true
 
@@ -11,7 +11,7 @@ profile:
 
 dns:
   enable: true
-  ipv6: true
+  ipv6: false
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   default-nameserver:
@@ -28,25 +28,10 @@ dns:
     - 8.8.8.8
 
 proxies:
-  - name: "DE-WS-DOMAIN"
-    type: vless
-    server: de-xr.moyou0929.me
-    port: 8443
-    uuid: "83095547-86a0-4acf-b655-a2cb3ed5e794"
-    udp: true
-    tls: true
-    servername: de-xr.moyou0929.me
-    network: ws
-    client-fingerprint: chrome
-    ws-opts:
-      path: /ws
-      headers:
-        Host: de-xr.moyou0929.me
-
-  - name: "DE-WS-IP"
+  - name: "DE-WS-443-IP"
     type: vless
     server: 159.65.123.94
-    port: 8443
+    port: 443
     uuid: "83095547-86a0-4acf-b655-a2cb3ed5e794"
     udp: true
     tls: true
@@ -62,9 +47,7 @@ proxy-groups:
   - name: "MAIN"
     type: select
     proxies:
-      - "DE-WS-DOMAIN"
-      - "DE-WS-IP"
-      - "DIRECT"
+      - "DE-WS-443-IP"
 
 rules:
   - MATCH,MAIN
