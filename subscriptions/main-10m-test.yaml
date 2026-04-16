@@ -14,17 +14,21 @@ dns:
   ipv6: false
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
+  use-hosts: true
+  respect-rules: true
   default-nameserver:
     - 77.88.8.8
-    - 77.88.8.1
-    - 223.5.5.5
-    - 1.1.1.1
-  nameserver:
-    - 77.88.8.8
-    - 77.88.8.1
-    - 223.5.5.5
     - 1.1.1.1
     - 8.8.8.8
+  proxy-server-nameserver:
+    - 77.88.8.8
+    - 1.1.1.1
+  nameserver:
+    - "https://1.1.1.1/dns-query#RULES"
+    - "https://8.8.8.8/dns-query#RULES"
+  fallback:
+    - "tls://1.1.1.1#RULES"
+    - "tls://8.8.8.8#RULES"
 
 proxies:
   - name: "DE-WS-IP"
