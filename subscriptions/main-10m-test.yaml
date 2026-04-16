@@ -51,6 +51,22 @@ proxies:
         Host: de-xr.moyou0929.me
     client-fingerprint: chrome
 
+  - name: "DE-WS-IPV6"
+    type: vless
+    server: "2a03:b0c0:3:f0:0:2:4b39:b000"
+    port: 8443
+    uuid: "83095547-86a0-4acf-b655-a2cb3ed5e794"
+    cipher: none
+    udp: true
+    tls: true
+    servername: de-xr.moyou0929.me
+    network: ws
+    ws-opts:
+      path: /ws
+      headers:
+        Host: de-xr.moyou0929.me
+    client-fingerprint: chrome
+
   - name: "DE-WS-DOMAIN"
     type: vless
     server: de-xr.moyou0929.me
@@ -72,6 +88,7 @@ proxy-groups:
     type: select
     proxies:
       - "DE-WS-IP"
+      - "DE-WS-IPV6"
       - "DE-WS-DOMAIN"
       - "DIRECT"
 
