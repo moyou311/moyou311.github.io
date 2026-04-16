@@ -45,26 +45,12 @@ proxies:
         Host: de-xr.moyou0929.me
     client-fingerprint: chrome
 
-  - name: "DE-GRPC-IP"
-    type: vless
-    server: 159.65.123.94
-    port: 8443
-    uuid: "83095547-86a0-4acf-b655-a2cb3ed5e794"
-    udp: true
-    tls: true
-    servername: de-xr.moyou0929.me
-    network: grpc
-    grpc-opts:
-      grpc-service-name: grpc
-    client-fingerprint: chrome
-
 proxy-groups:
   - name: "MAIN"
     type: select
     proxies:
       - "DE-WS-IP"
       - "DE-WS-DOMAIN"
-      - "DE-GRPC-IP"
       - "DIRECT"
 
 rules:
