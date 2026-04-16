@@ -7,7 +7,6 @@ unified-delay: true
 tcp-concurrent: true
 
 profile:
-  # 订阅更新后优先回到当前默认顺序，避免客户端长期卡在旧选择上。
   store-selected: false
 
 dns:
@@ -28,7 +27,6 @@ dns:
     - 8.8.8.8
 
 proxies:
-  # 正式默认入口：gRPC + TLS，当前对该俄罗斯网络更稳。
   - name: "DE-GRPC"
     type: vless
     server: 159.65.123.94
@@ -42,7 +40,6 @@ proxies:
       grpc-service-name: grpc
     client-fingerprint: chrome
 
-  # 同协议、不同暴露面：用于区分单 IP 打标与协议整体失效。
   - name: "DE-GRPC-DOMAIN"
     type: vless
     server: de-xr.moyou0929.me
@@ -56,7 +53,6 @@ proxies:
       grpc-service-name: grpc
     client-fingerprint: chrome
 
-  # 手动排障入口：REALITY 只保留作备选，不做默认自动探测。
   - name: "DE-REALITY"
     type: vless
     server: 159.65.123.94
