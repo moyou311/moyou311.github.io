@@ -7,10 +7,10 @@
 - 正式订阅地址：
   - `https://moyou0929.me/subscriptions/main-10m.yaml`
 - 当前正式方案：
-  - `DE-XHTTP-IP`
-  - `DE-XHTTP-DOMAIN`
+  - `DE-HTTP-IP`
+  - `DE-HTTP-DOMAIN`
 - 当前正式主线：
-  - `443/TLS + XHTTP`
+  - `443/TLS + HTTPUpgrade`
 
 ## 当前测试订阅
 

@@ -28,9 +28,9 @@ dns:
     - 8.8.8.8
 
 proxies:
-  # 正式主链路：443/TLS + XHTTP。
-  # 需要客户端使用支持 xhttp 的 Mihomo 版本，先升级客户端再下发正式订阅。
-  - name: "DE-XHTTP-IP"
+  # 正式主链路：443/TLS + HTTPUpgrade。
+  # 在 Mihomo 中使用 ws 传输层并开启 v2ray-http-upgrade。
+  - name: "DE-HTTP-IP"
     type: vless
     server: 159.65.123.94
     port: 443
@@ -38,18 +38,16 @@ proxies:
     udp: true
     tls: true
     servername: de-xr.moyou0929.me
-    alpn:
-      - h2
-    network: xhttp
+    network: ws
     client-fingerprint: chrome
-    encryption: ""
-    xhttp-opts:
-      path: /api/v3/sync
-      host: de-xr.moyou0929.me
-      mode: packet-up
+    ws-opts:
+      path: /http
+      headers:
+        Host: de-xr.moyou0929.me
+      v2ray-http-upgrade: true
 
   # 同一条主线保留域名暴露面，用于区分 DNS 问题与单 IP 问题。
-  - name: "DE-XHTTP-DOMAIN"
+  - name: "DE-HTTP-DOMAIN"
     type: vless
     server: de-xr.moyou0929.me
     port: 443
@@ -57,22 +55,20 @@ proxies:
     udp: true
     tls: true
     servername: de-xr.moyou0929.me
-    alpn:
-      - h2
-    network: xhttp
+    network: ws
     client-fingerprint: chrome
-    encryption: ""
-    xhttp-opts:
-      path: /api/v3/sync
-      host: de-xr.moyou0929.me
-      mode: packet-up
+    ws-opts:
+      path: /http
+      headers:
+        Host: de-xr.moyou0929.me
+      v2ray-http-upgrade: true
 
 proxy-groups:
   - name: "MAIN"
     type: select
     proxies:
-      - "DE-XHTTP-IP"
-      - "DE-XHTTP-DOMAIN"
+      - "DE-HTTP-IP"
+      - "DE-HTTP-DOMAIN"
       - "DIRECT"
 
 rules:

@@ -28,7 +28,7 @@ dns:
     - 8.8.8.8
 
 proxies:
-  - name: "DE-XHTTP-IP"
+  - name: "DE-HTTP-IP"
     type: vless
     server: 159.65.123.94
     port: 443
@@ -36,17 +36,15 @@ proxies:
     udp: true
     tls: true
     servername: de-xr.moyou0929.me
-    alpn:
-      - h2
-    network: xhttp
+    network: ws
     client-fingerprint: chrome
-    encryption: ""
-    xhttp-opts:
-      path: /api/v3/sync
-      host: de-xr.moyou0929.me
-      mode: packet-up
+    ws-opts:
+      path: /http
+      headers:
+        Host: de-xr.moyou0929.me
+      v2ray-http-upgrade: true
 
-  - name: "DE-XHTTP-DOMAIN"
+  - name: "DE-HTTP-DOMAIN"
     type: vless
     server: de-xr.moyou0929.me
     port: 443
@@ -54,22 +52,20 @@ proxies:
     udp: true
     tls: true
     servername: de-xr.moyou0929.me
-    alpn:
-      - h2
-    network: xhttp
+    network: ws
     client-fingerprint: chrome
-    encryption: ""
-    xhttp-opts:
-      path: /api/v3/sync
-      host: de-xr.moyou0929.me
-      mode: packet-up
+    ws-opts:
+      path: /http
+      headers:
+        Host: de-xr.moyou0929.me
+      v2ray-http-upgrade: true
 
 proxy-groups:
   - name: "MAIN"
     type: select
     proxies:
-      - "DE-XHTTP-IP"
-      - "DE-XHTTP-DOMAIN"
+      - "DE-HTTP-IP"
+      - "DE-HTTP-DOMAIN"
       - "DIRECT"
 
 rules:

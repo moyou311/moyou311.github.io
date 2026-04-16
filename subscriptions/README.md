@@ -6,8 +6,8 @@
 - 线上地址：
   - `https://moyou0929.me/subscriptions/main-10m.yaml`
 - 当前内容：
-  - `DE-XHTTP-IP`
-  - `DE-XHTTP-DOMAIN`
+  - `DE-HTTP-IP`
+  - `DE-HTTP-DOMAIN`
 
 ## 测试入口
 
