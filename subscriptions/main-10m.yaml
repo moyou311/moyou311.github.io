@@ -29,7 +29,7 @@ dns:
 
 proxies:
   # 正式默认入口：gRPC + TLS，当前对该俄罗斯网络更稳。
-  - name: "DE-GRPC"
+  - name: "DE-GRPC-IP"
     type: vless
     server: 159.65.123.94
     port: 8443
@@ -76,7 +76,7 @@ proxy-groups:
   - name: "MAIN"
     type: select
     proxies:
-      - "DE-GRPC"
+      - "DE-GRPC-IP"
       - "DE-GRPC-DOMAIN"
       - "DE-REALITY"
       - "DIRECT"
