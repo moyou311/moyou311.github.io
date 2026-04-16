@@ -23,6 +23,10 @@ dns:
   proxy-server-nameserver:
     - 77.88.8.8
     - 1.1.1.1
+  direct-nameserver:
+    - 77.88.8.8
+    - 77.88.8.1
+    - 223.5.5.5
   nameserver:
     - "https://1.1.1.1/dns-query#RULES"
     - "https://8.8.8.8/dns-query#RULES"
@@ -72,4 +76,5 @@ proxy-groups:
       - "DIRECT"
 
 rules:
+  - GEOIP,CN,DIRECT
   - MATCH,MAIN
