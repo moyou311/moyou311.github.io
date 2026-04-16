@@ -2,7 +2,7 @@ mixed-port: 7890
 allow-lan: false
 mode: rule
 log-level: info
-ipv6: false
+ipv6: true
 unified-delay: true
 tcp-concurrent: true
 
@@ -12,7 +12,7 @@ profile:
 
 dns:
   enable: true
-  ipv6: false
+  ipv6: true
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   default-nameserver:
@@ -28,29 +28,12 @@ dns:
     - 8.8.8.8
 
 proxies:
-  # 正式主链路：443/TLS + HTTPUpgrade。
-  # 在 Mihomo 中使用 ws 传输层并开启 v2ray-http-upgrade。
-  - name: "DE-HTTP-IP"
-    type: vless
-    server: 159.65.123.94
-    port: 443
-    uuid: "83095547-86a0-4acf-b655-a2cb3ed5e794"
-    udp: true
-    tls: true
-    servername: de-xr.moyou0929.me
-    network: ws
-    client-fingerprint: chrome
-    ws-opts:
-      path: /http
-      headers:
-        Host: de-xr.moyou0929.me
-      v2ray-http-upgrade: true
-
-  # 同一条主线保留域名暴露面，用于区分 DNS 问题与单 IP 问题。
-  - name: "DE-HTTP-DOMAIN"
+  # 正式主链路回到现网更成熟的 8443/TLS + WS。
+  # 这条路已经在俄罗斯侧多次命中过服务器 /ws，吞吐比当前 HTTPUpgrade 更稳。
+  - name: "DE-WS-DOMAIN"
     type: vless
     server: de-xr.moyou0929.me
-    port: 443
+    port: 8443
     uuid: "83095547-86a0-4acf-b655-a2cb3ed5e794"
     udp: true
     tls: true
@@ -58,17 +41,32 @@ proxies:
     network: ws
     client-fingerprint: chrome
     ws-opts:
-      path: /http
+      path: /ws
       headers:
         Host: de-xr.moyou0929.me
-      v2ray-http-upgrade: true
+
+  # 同主线保留 IP 暴露面，便于在 DNS 侧异常时直接切换。
+  - name: "DE-WS-IP"
+    type: vless
+    server: 159.65.123.94
+    port: 8443
+    uuid: "83095547-86a0-4acf-b655-a2cb3ed5e794"
+    udp: true
+    tls: true
+    servername: de-xr.moyou0929.me
+    network: ws
+    client-fingerprint: chrome
+    ws-opts:
+      path: /ws
+      headers:
+        Host: de-xr.moyou0929.me
 
 proxy-groups:
   - name: "MAIN"
     type: select
     proxies:
-      - "DE-HTTP-IP"
-      - "DE-HTTP-DOMAIN"
+      - "DE-WS-DOMAIN"
+      - "DE-WS-IP"
       - "DIRECT"
 
 rules:
