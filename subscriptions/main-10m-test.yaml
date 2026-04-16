@@ -14,6 +14,12 @@ dns:
   ipv6: false
   enhanced-mode: redir-host
   use-hosts: true
+  respect-rules: true
+  proxy-server-nameserver:
+    - 77.88.8.8
+    - 77.88.8.1
+    - 223.5.5.5
+    - 1.1.1.1
   default-nameserver:
     - 77.88.8.8
     - 77.88.8.1
