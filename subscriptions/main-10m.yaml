@@ -7,13 +7,15 @@ unified-delay: true
 tcp-concurrent: true
 
 profile:
-  store-selected: true
+  # 订阅更新后优先回到当前默认顺序，避免客户端长期卡在旧选择上。
+  store-selected: false
 
 dns:
   enable: true
   ipv6: false
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
+  respect-rules: true
   default-nameserver:
     - 77.88.8.8
     - 77.88.8.1
@@ -31,6 +33,20 @@ proxies:
   - name: "DE-GRPC"
     type: vless
     server: 159.65.123.94
+    port: 8443
+    uuid: "83095547-86a0-4acf-b655-a2cb3ed5e794"
+    udp: true
+    tls: true
+    servername: de-xr.moyou0929.me
+    network: grpc
+    grpc-opts:
+      grpc-service-name: grpc
+    client-fingerprint: chrome
+
+  # 同协议、不同暴露面：用于区分单 IP 打标与协议整体失效。
+  - name: "DE-GRPC-DOMAIN"
+    type: vless
+    server: de-xr.moyou0929.me
     port: 8443
     uuid: "83095547-86a0-4acf-b655-a2cb3ed5e794"
     udp: true
@@ -62,6 +78,7 @@ proxy-groups:
     type: select
     proxies:
       - "DE-GRPC"
+      - "DE-GRPC-DOMAIN"
       - "DE-REALITY"
       - "DIRECT"
 
