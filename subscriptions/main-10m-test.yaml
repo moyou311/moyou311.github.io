@@ -13,17 +13,36 @@ dns:
   enable: false
 
 proxies:
-  - name: "DE-GRPC-DOMAIN"
+  - name: "DE-WS-IP"
+    type: vless
+    server: 159.65.123.94
+    port: 8443
+    uuid: "83095547-86a0-4acf-b655-a2cb3ed5e794"
+    cipher: none
+    udp: true
+    tls: true
+    servername: de-xr.moyou0929.me
+    network: ws
+    ws-opts:
+      path: /ws
+      headers:
+        Host: de-xr.moyou0929.me
+    client-fingerprint: chrome
+
+  - name: "DE-WS-DOMAIN"
     type: vless
     server: de-xr.moyou0929.me
     port: 8443
     uuid: "83095547-86a0-4acf-b655-a2cb3ed5e794"
+    cipher: none
     udp: true
     tls: true
     servername: de-xr.moyou0929.me
-    network: grpc
-    grpc-opts:
-      grpc-service-name: grpc
+    network: ws
+    ws-opts:
+      path: /ws
+      headers:
+        Host: de-xr.moyou0929.me
     client-fingerprint: chrome
 
   - name: "DE-GRPC-IP"
@@ -43,7 +62,8 @@ proxy-groups:
   - name: "MAIN"
     type: select
     proxies:
-      - "DE-GRPC-DOMAIN"
+      - "DE-WS-IP"
+      - "DE-WS-DOMAIN"
       - "DE-GRPC-IP"
       - "DIRECT"
 
