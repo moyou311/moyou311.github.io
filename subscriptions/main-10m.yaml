@@ -13,8 +13,8 @@ profile:
 dns:
   enable: true
   ipv6: false
-  enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16
+  # 对验证码 / 回跳站点优先保兼容，避免 fake-ip 干扰浏览器完整请求流程。
+  enhanced-mode: redir-host
   default-nameserver:
     - 77.88.8.8
     - 77.88.8.1
