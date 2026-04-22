@@ -26,43 +26,7 @@ dns:
     - 8.8.8.8
 
 proxies:
-  - name: "WS-CF-XHTTP-H2"
-    type: vless
-    server: ws.moyou0929.me
-    port: 443
-    uuid: 83095547-86a0-4acf-b655-a2cb3ed5e794
-    udp: true
-    tls: true
-    alpn:
-      - h2
-    servername: ws.moyou0929.me
-    network: xhttp
-    xhttp-opts:
-      host: ws.moyou0929.me
-      path: /moyou-ws-93c4a12d
-      mode: auto
-      reuse-settings:
-        max-concurrency: "16-32"
-        c-max-reuse-times: "0"
-        h-max-reusable-secs: "1800-3000"
-      headers:
-        User-Agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
-    client-fingerprint: chrome
-  - name: "WS-CF-BACKUP"
-    type: vless
-    server: ws.moyou0929.me
-    port: 443
-    uuid: 83095547-86a0-4acf-b655-a2cb3ed5e794
-    udp: true
-    tls: true
-    servername: ws.moyou0929.me
-    network: ws
-    ws-opts:
-      path: /moyou-ws-backup
-      headers:
-        User-Agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
-    client-fingerprint: chrome
-  - name: "WS-CF-BACKUP-TCP"
+  - name: "WS-CF-443"
     type: vless
     server: ws.moyou0929.me
     port: 443
@@ -72,18 +36,26 @@ proxies:
     servername: ws.moyou0929.me
     network: ws
     ws-opts:
-      path: /moyou-ws-backup
+      path: /moyou-ws-93c4a12d
       headers:
+        Host: ws.moyou0929.me
         User-Agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
     client-fingerprint: chrome
+  - name: "HY2-IP-8443"
+    type: hysteria2
+    server: 146.190.31.132
+    port: 8443
+    password: 508mdUsxh6ZYJarMzR+dP8JphA/CRizV
+    sni: ws.moyou0929.me
+    alpn:
+      - h3
 
 proxy-groups:
   - name: "MAIN"
     type: select
     proxies:
-      - "WS-CF-XHTTP-H2"
-      - "WS-CF-BACKUP-TCP"
-      - "WS-CF-BACKUP"
+      - "WS-CF-443"
+      - "HY2-IP-8443"
       - DIRECT
 
 rules:
