@@ -62,12 +62,27 @@ proxies:
       headers:
         User-Agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
     client-fingerprint: chrome
+  - name: "WS-CF-BACKUP-TCP"
+    type: vless
+    server: ws.moyou0929.me
+    port: 443
+    uuid: 83095547-86a0-4acf-b655-a2cb3ed5e794
+    udp: false
+    tls: true
+    servername: ws.moyou0929.me
+    network: ws
+    ws-opts:
+      path: /moyou-ws-backup
+      headers:
+        User-Agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+    client-fingerprint: chrome
 
 proxy-groups:
   - name: "MAIN"
     type: select
     proxies:
       - "WS-CF-XHTTP-H2"
+      - "WS-CF-BACKUP-TCP"
       - "WS-CF-BACKUP"
       - DIRECT
 
