@@ -26,7 +26,7 @@ dns:
     - 8.8.8.8
 
 proxies:
-  - name: "WS-CF"
+  - name: "WS-CF-BACKUP"
     type: vless
     server: ws.moyou0929.me
     port: 443
@@ -34,10 +34,9 @@ proxies:
     udp: true
     tls: true
     servername: ws.moyou0929.me
-    network: xhttp
-    xhttp-opts:
-      path: /moyou-ws-93c4a12d
-      mode: stream-up
+    network: ws
+    ws-opts:
+      path: /moyou-ws-backup
       headers:
         User-Agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
     client-fingerprint: chrome
@@ -46,7 +45,7 @@ proxy-groups:
   - name: "MAIN"
     type: select
     proxies:
-      - "WS-CF"
+      - "WS-CF-BACKUP"
       - DIRECT
 
 rules:
