@@ -26,18 +26,21 @@ dns:
     - 8.8.8.8
 
 proxies:
-  - name: "WS-CF"
+  - name: "WS-CF-XHTTP-H2"
     type: vless
     server: ws.moyou0929.me
     port: 443
     uuid: 83095547-86a0-4acf-b655-a2cb3ed5e794
     udp: true
     tls: true
+    alpn:
+      - h2
     servername: ws.moyou0929.me
     network: xhttp
     xhttp-opts:
+      host: ws.moyou0929.me
       path: /moyou-ws-93c4a12d
-      mode: stream-up
+      mode: auto
       headers:
         User-Agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
     client-fingerprint: chrome
@@ -46,7 +49,7 @@ proxy-groups:
   - name: "MAIN"
     type: select
     proxies:
-      - "WS-CF"
+      - "WS-CF-XHTTP-H2"
       - DIRECT
 
 rules:
