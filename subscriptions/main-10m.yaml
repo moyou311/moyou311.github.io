@@ -41,6 +41,10 @@ proxies:
       host: ws.moyou0929.me
       path: /moyou-ws-93c4a12d
       mode: auto
+      reuse-settings:
+        max-concurrency: "16-32"
+        c-max-reuse-times: "0"
+        h-max-reusable-secs: "1800-3000"
       headers:
         User-Agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
     client-fingerprint: chrome
